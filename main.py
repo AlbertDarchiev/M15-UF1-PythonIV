@@ -3,6 +3,7 @@ import numpy as np
 import csv
 import february_temperature as ft
 
+
 def read_csv(input_csv) -> list:
     data = []
     with open(input_csv, 'r', encoding='utf-8') as csv_file:
@@ -27,5 +28,10 @@ type(nd_metadata)
 
 #print(nd_metadata) 
 
-ft.Temperature.get_average(nd_detall_estacions)
+#ft.Temperature.get_average(nd_detall_estacions)
+ft.Temperature.get_histogram(nd_detall_estacions)
+
+
+
+
 
