@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import csv
 import february_temperature as ft
-#44
+#44sdsdsd
 def read_csv(input_csv) -> list:
     data = []
     with open(input_csv, 'r', encoding='utf-8') as csv_file:
