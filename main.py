@@ -28,7 +28,7 @@ type(nd_metadata)
 #print(nd_metadata) 
 
 ft.Temperature.get_average(nd_detall_estacions)
-ft.Temperature.get_histogram(nd_detall_estacions)
+#ft.Temperature.get_histogram(nd_detall_estacions)
 
 
 

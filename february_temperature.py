@@ -5,25 +5,35 @@ from numpy import random
 class Temperature:
     def get_average(data):
         x_days = []
-        y_values = []
-        for i in data[1:]:           
+        stations = [[], [], [], []]
+        counter = 0
+        for i in data[1:]:
+            if counter == 4:
+                counter = 0
             month = str(i[0]).split("-")[1] == "02"
             avg_temp = str(i[3]) == "TM"
             if month and avg_temp:
+                stations[counter].append(float(i[4]))  # Convertir a float
                 day = str(i[0]).split("-")[2]
-                x_days.append(day)
-                y_values.append(float(i[4]))
+                if day not in x_days:
+                    x_days.append(day)
+                counter += 1
 
+        plt.figure(figsize=(12, 6))
+#plt.subplot(1, 4, i+1)
+        plt.plot(x_days, stations[0], marker='o')
+        plt.plot(x_days, stations[1], marker='o')
+        plt.plot(x_days, stations[2], marker='o')
+        plt.plot(x_days, stations[3], marker='o')
 
-        print(y_values)
-        plt.subplot(1,2,1)
-        plt.bar(x_days, y_values)
-        plt.yticks(np.arange(min(y_values), max(y_values)))
-    
-        plt.xlabel('Days')
-        plt.ylabel('Average Temperature')
-        plt.title("GRÀFIC 1")
+        plt.legend(['Estación 1', 'Estación 2', 'Estación 3', 'Estación 4'])
+        plt.xlabel('Días de Febrero')
+        plt.ylabel('Temperatura Promedio')
+        #plt.title(f'Estación {i+1}')
 
+        plt.tight_layout()
+        plt.show()
+"""
         #2
         plt.subplot(1, 2, 2)
         plt.bar(x_days, y_values)
@@ -63,3 +73,4 @@ class Temperature:
 
    
     
+"""
