@@ -12,15 +12,17 @@ class Temperature:
             if month and avg_temp:
                 day = str(i[0]).split("-")[2]
                 x_days.append(day)
-                y_values.append(i[4])
+                y_values.append(float(i[4]))
 
-        #plt.figure(figsize=(12, 9), )
+
+        print(y_values)
         plt.subplot(1,2,1)
         plt.bar(x_days, y_values)
+        plt.yticks(np.arange(min(y_values), max(y_values)))
+    
         plt.xlabel('Days')
         plt.ylabel('Average Temperature')
         plt.title("GRÀFIC 1")
-
 
         #2
         plt.subplot(1, 2, 2)
@@ -55,6 +57,7 @@ class Temperature:
         plt.xlabel('Days')
         plt.ylabel('Temperature')
         plt.title('Temperatures in February 2023')
+        plt.xticks(range(1,29))
         plt.show()
 
 
