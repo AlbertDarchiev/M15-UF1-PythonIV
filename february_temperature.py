@@ -44,11 +44,15 @@ class Temperature:
                 day = str(i[0]).split("-")[2]
                 x_days.append(day)
                 y_values.append(i[4])
+
+        tempss = [float(hvaluetransf) for hvaluetransf in y_values]
+        rangestemp = (-10, 25)
         plt.figure(figsize=(12,6))
-        plt.hist(y_values, range=(-10,25))
+        plt.hist(tempss, bins=20, range=rangestemp)
         plt.xlabel('Temperatura')
         plt.ylabel('Frecuencia')
         plt.title('Histograma Temperatura Febrero 2022')
+        
         
         convertlist = [float(valuetransf) for valuetransf in y_values]
         media = np.mean(convertlist)
@@ -63,41 +67,3 @@ class Temperature:
         plt.xticks(range(1,29))
         
         plt.show()
-
-        
-
-     
-        
-"""
-        #2
-        plt.subplot(1, 2, 2)
-        plt.bar(x_days, y_values)
-        plt.xlabel('Days')
-        plt.ylabel('Average Temperature')
-        plt.title("GRÀFIC 2")
-        return plt.show()
-    
-    def get_histogram(info):
-        x_days = []
-        y_values = []
-        for i in info[1:]:           
-            month = str(i[0]).split("-")[1] == "02"
-            avg_temp = str(i[3]) == "TM"
-            if month and avg_temp:
-                day = str(i[0]).split("-")[2]
-                x_days.append(day)
-                y_values.append(i[4])
-                
-        #Mostrar histograma
-        plt.hist(y_values, bins=10, range=(-10,25), color='green', histtype='bar', rwidth=0.8)
-        plt.xlabel('Temperatura')
-        plt.ylabel('Frecuencia')
-        plt.title('Histograma temperatura mediana en Febrero')
-        plt.show()
-        #Mostrar grafico tiempo febrero 2023
-        
-
-
-   
-    
-"""
