@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from numpy import random
 
 class Temperature:
     def get_average(data):
@@ -20,7 +19,6 @@ class Temperature:
                 counter += 1
 
         plt.figure(figsize=(12, 6))
-#plt.subplot(1, 4, i+1)
         plt.plot(x_days, stations[0], marker='o')
         plt.plot(x_days, stations[1], marker='o')
         plt.plot(x_days, stations[2], marker='o')
@@ -29,8 +27,7 @@ class Temperature:
         plt.legend(['Estación 1', 'Estación 2', 'Estación 3', 'Estación 4'])
         plt.xlabel('Días de Febrero')
         plt.ylabel('Temperatura Promedio')
-        #plt.title(f'Estación {i+1}')
-
+        plt.title('Ex3 - Temperatura promedio de Febrero 2022')
         plt.tight_layout()
         plt.show()
     
@@ -51,8 +48,7 @@ class Temperature:
         plt.hist(tempss, bins=20, range=ranges_temp)
         plt.xlabel('Temperatura')
         plt.ylabel('Frecuencia')
-        plt.title('Histograma Temperatura Febrero 2022')
-        
+        plt.title('Ex4.1 - Histograma de Temperaturas Febrero 2022')        
         
         conver_tlist = [float(value_transf) for value_transf in y_values]
         media = np.mean(conver_tlist)
@@ -61,9 +57,47 @@ class Temperature:
 
         plt.figure(figsize=(12,6))
         plt.plot(range(1,29), future_temps)
-        plt.xlabel('Days')
-        plt.ylabel('Temperature')
-        plt.title('Temperatures in February 2023')
+        plt.xlabel('Días Febrero')
+        plt.ylabel('Temperatura')
+        plt.title('Ex4.2 - Histograma de Temperaturas Febrero 2022')
         plt.xticks(range(1,29))
         
+        plt.show()
+
+    def rain_predict(data):
+        x_days = []
+        rainy_days = []
+        ppt_data = []
+        for row in data[1:]:
+            if len(ppt_data) == 3:
+                if np.mean(ppt_data) > 0:
+                    rainy_days.append(True)
+                else:
+                    rainy_days.append(False)
+                ppt_data = []
+            month = str(row[0]).split("-")[1] == "02"
+            avg_temp = str(row[3]) == "PPT"
+            if month and avg_temp:
+                ppt_data.append(float(row[4]))
+                day = str(row[0]).split("-")[2] 
+                if day not in x_days:
+                    x_days.append(day)
+        
+        rainy_days = np.array(rainy_days)
+        plt.figure(figsize=(15, 6))
+        plt.bar(x_days, rainy_days, color=['yellow' if rain else 'red' for rain in rainy_days])
+        plt.xlabel('Días Febrero')
+        plt.title('Ex5.1 - Predicción de lluvia de Febrero 2023')
+        plt.yticks([0, 1], ['No llueve', 'Llueve'])
+        plt.xticks(x_days)
+        plt.show()
+
+        y_values = [sum(rainy_days), len(rainy_days) - sum(rainy_days)]
+        plt.figure(figsize=(8, 8))
+        plt.pie(y_values, 
+                explode=(0.1, 0), 
+                labels=['Llueve', 'No llueve'], 
+                colors=['yellow', 'orange'],
+                autopct='%1.1f%%')
+        plt.title('Ex5.2 - Predicción de lluvia de Febrero 2023')
         plt.show()
