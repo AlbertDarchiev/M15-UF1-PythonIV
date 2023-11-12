@@ -46,16 +46,16 @@ class Temperature:
                 y_values.append(i[4])
 
         tempss = [float(hvaluetransf) for hvaluetransf in y_values]
-        rangestemp = (-10, 25)
+        ranges_temp = (-10, 25)
         plt.figure(figsize=(12,6))
-        plt.hist(tempss, bins=20, range=rangestemp)
+        plt.hist(tempss, bins=20, range=ranges_temp)
         plt.xlabel('Temperatura')
         plt.ylabel('Frecuencia')
         plt.title('Histograma Temperatura Febrero 2022')
         
         
-        convertlist = [float(valuetransf) for valuetransf in y_values]
-        media = np.mean(convertlist)
+        conver_tlist = [float(value_transf) for value_transf in y_values]
+        media = np.mean(conver_tlist)
         future_temps = np.random.normal(media,5.0,size=28)
 
 
