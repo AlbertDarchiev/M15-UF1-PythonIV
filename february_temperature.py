@@ -33,6 +33,41 @@ class Temperature:
 
         plt.tight_layout()
         plt.show()
+    
+    def get_histogram(data):
+        x_days = []
+        y_values = []
+        for i in data[1:]:           
+            month = str(i[0]).split("-")[1] == "02"
+            avg_temp = str(i[3]) == "TM"
+            if month and avg_temp:
+                day = str(i[0]).split("-")[2]
+                x_days.append(day)
+                y_values.append(i[4])
+        plt.figure(figsize=(12,6))
+        plt.hist(y_values, range=(-10,25))
+        plt.xlabel('Temperatura')
+        plt.ylabel('Frecuencia')
+        plt.title('Histograma Temperatura Febrero 2022')
+        
+        convertlist = [float(valuetransf) for valuetransf in y_values]
+        media = np.mean(convertlist)
+        future_temps = np.random.normal(media,5.0,size=28)
+
+
+        plt.figure(figsize=(12,6))
+        plt.plot(range(1,29), future_temps)
+        plt.xlabel('Days')
+        plt.ylabel('Temperature')
+        plt.title('Temperatures in February 2023')
+        plt.xticks(range(1,29))
+        
+        plt.show()
+
+        
+
+     
+        
 """
         #2
         plt.subplot(1, 2, 2)
@@ -60,15 +95,7 @@ class Temperature:
         plt.title('Histograma temperatura mediana en Febrero')
         plt.show()
         #Mostrar grafico tiempo febrero 2023
-        temperatures_random = []
-        for day in range(1,29):
-            temperatures_random.append(random.randint(-10,25))
-        plt.plot(range(1,29), temperatures_random, color='green')
-        plt.xlabel('Days')
-        plt.ylabel('Temperature')
-        plt.title('Temperatures in February 2023')
-        plt.xticks(range(1,29))
-        plt.show()
+        
 
 
    
