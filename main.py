@@ -24,7 +24,7 @@ nd_detall_estacions =np.array(data3)
 # EXERCICI 3
 ft.Temperature.get_average(nd_detall_estacions)
 
-# EXERCICI 4
+# EXERCICI 4 Y 4.1
 ft.Temperature.get_histogram(nd_detall_estacions)
 
 # EXERCICI 5
