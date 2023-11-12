@@ -12,6 +12,7 @@ def read_csv(input_csv) -> list:
     csv_file.close()
     return data
 
+
 data1 = read_csv("Data/Metadades.csv")
 data2 = read_csv('Data/Estacions.csv')
 data3 = read_csv('Data/Detall_Estacions.csv')
@@ -20,17 +21,14 @@ nd_metadata =np.array(data1)
 nd_estacions =np.array(data2)
 nd_detall_estacions =np.array(data3)
 
-#print(nd_metadata)
-type(nd_metadata)
-
-#print(np.shape(nd_metadata))
-
-#print(nd_metadata) 
-
+# EXERCICI 3
 ft.Temperature.get_average(nd_detall_estacions)
+
+# EXERCICI 4
 ft.Temperature.get_histogram(nd_detall_estacions)
 
-
+# EXERCICI 5
+ft.Temperature.rain_predict(nd_detall_estacions)
 
 
 
